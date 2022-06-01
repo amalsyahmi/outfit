@@ -1,16 +1,15 @@
-import React from 'react';
-import {Text} from 'react-native';
 import {
   initialWindowMetrics,
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
+import {Router} from './router/Router';
 
-const TabbedApp = () => {
+const App = () => {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <Text style={{}}>Outfit</Text>
+      <Router />
     </SafeAreaProvider>
   );
 };
 
-export default TabbedApp;
+export default App;
