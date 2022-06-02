@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {TopLevelStackParams} from './RouterTypes';
 import {Header} from '../components/Header';
-import {WelcomeScreen} from '../pages/welcome-screen';
+import {WelcomeScreen} from '../pages/welcome';
 
 export const Router = () => {
   const TopLevelStack = createStackNavigator<TopLevelStackParams>();
