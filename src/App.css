@@ -1,0 +1,24 @@
+@font-face {
+    font-family: Metropolis-Light;
+    src: url(../assets/fonts/Metropolis-Light.otf);
+}
+
+@font-face {
+    font-family: Metropolis-Regular;
+    src: url(../assets/fonts/Metropolis-Regular.otf);
+}
+
+@font-face {
+    font-family: Metropolis-SemiBold;
+    src: url(../assets/fonts/Metropolis-SemiBold.otf);
+}
+
+@font-face {
+    font-family: Metropolis-Bold;
+    src: url(../assets/fonts/Metropolis-Bold.otf);
+}
+
+@font-face {
+    font-family: Metropolis-ExtraBold;
+    src: url(../assets/fonts/Metropolis-ExtraBold.otf);
+}

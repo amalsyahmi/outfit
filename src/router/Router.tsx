@@ -21,7 +21,7 @@ export const Router = () => {
           <TopLevelStack.Screen
             name="WelcomeScreen"
             component={WelcomeScreen}
-            options={{headerShown: true}}
+            options={{headerShown: false}}
           />
         </TopLevelStack.Navigator>
       }

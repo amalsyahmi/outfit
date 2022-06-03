@@ -5,6 +5,7 @@ import {
 } from 'react-native-safe-area-context';
 import {SplashScreen} from './pages/splash';
 import {Router} from './router/Router';
+import './App.css';
 
 const App = () => {
   const [isReady, setIsReady] = useState(false);
