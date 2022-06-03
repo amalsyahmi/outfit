@@ -115,17 +115,29 @@ export function withTextProps<Props extends {style?: any}>(
       }
 
       style.color = C.colorTextDark;
-      if (colorTheme) style.color = C.colorTextTheme;
-      else if (colorNegativeBlue) style.color = C.colorTextNegativeBlue;
-      else if (colorNegativeYellow) style.color = C.colorTextNegativeYellow;
-      else if (colorAccent) style.color = C.colorTextAccent;
-      else if (colorDark) style.color = C.colorTextDark;
-      else if (colorDarkSoft) style.color = C.colorTextDarkSoft;
-      else if (colorDarkSofter) style.color = C.colorTextDarkSofter;
-      else if (colorLight) style.color = C.colorTextLight;
-      else if (colorLightSoft) style.color = C.colorTextLightSoft;
-      else if (colorLightSofter) style.color = C.colorTextLightSofter;
-      else if (colorDanger) style.color = C.colorTextDanger;
+      if (colorTheme) {
+        style.color = C.colorTextTheme;
+      } else if (colorNegativeBlue) {
+        style.color = C.colorTextNegativeBlue;
+      } else if (colorNegativeYellow) {
+        style.color = C.colorTextNegativeYellow;
+      } else if (colorAccent) {
+        style.color = C.colorTextAccent;
+      } else if (colorDark) {
+        style.color = C.colorTextDark;
+      } else if (colorDarkSoft) {
+        style.color = C.colorTextDarkSoft;
+      } else if (colorDarkSofter) {
+        style.color = C.colorTextDarkSofter;
+      } else if (colorLight) {
+        style.color = C.colorTextLight;
+      } else if (colorLightSoft) {
+        style.color = C.colorTextLightSoft;
+      } else if (colorLightSofter) {
+        style.color = C.colorTextLightSofter;
+      } else if (colorDanger) {
+        style.color = C.colorTextDanger;
+      }
 
       style.fontWeight = C.fontWeightRegular;
       style.fontFamily = 'Metropolis-Regular';
@@ -147,16 +159,26 @@ export function withTextProps<Props extends {style?: any}>(
       }
 
       style.textAlign = 'auto';
-      if (alignCenter) style.textAlign = 'center';
-      else if (alignLeft) style.textAlign = 'left';
-      else if (alignRight) style.textAlign = 'right';
-      else if (alignJustify) style.textAlign = 'justify';
+      if (alignCenter) {
+        style.textAlign = 'center';
+      } else if (alignLeft) {
+        style.textAlign = 'left';
+      } else if (alignRight) {
+        style.textAlign = 'right';
+      } else if (alignJustify) {
+        style.textAlign = 'justify';
+      }
 
       style.textDecorationLine = 'none';
-      if (underline) style.textDecorationLine = 'underline';
-      else if (lineThrough) style.textDecorationLine = 'line-through';
+      if (underline) {
+        style.textDecorationLine = 'underline';
+      } else if (lineThrough) {
+        style.textDecorationLine = 'line-through';
+      }
 
-      if (marginAuto) style.margin = 'auto';
+      if (marginAuto) {
+        style.margin = 'auto';
+      }
 
       return (
         <Component
