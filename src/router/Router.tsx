@@ -11,6 +11,8 @@ import FeedScreen from '../pages/FeedScreen';
 import MessagesScreen from '../pages/MessagesScreen';
 import CartScreen from '../pages/CartScreen';
 import ProfileScreen from '../pages/ProfileScren';
+import BottomTabBarIcon from '../components/BottomTabBarIcon';
+import {constants as C} from '../style/constants';
 
 export const Router = () => {
   const TopLevelStack = createStackNavigator<TopLevelStackParams>();
@@ -42,6 +44,8 @@ export const Router = () => {
                       header(props: any) {
                         return <Header {...props} />;
                       },
+                      tabBarActiveTintColor: C.colorPrimary,
+                      tabBarInactiveTintColor: C.colorGray,
                       tabBarHideOnKeyboard: true,
                     }}>
                     <MainStackMobile.Screen
@@ -49,8 +53,14 @@ export const Router = () => {
                       options={{
                         title: 'Home',
                         headerShown: false,
-                        tabBarIcon(_props) {
-                          return <></>;
+                        tabBarIcon(props) {
+                          return (
+                            <BottomTabBarIcon
+                              focusedIconName="home"
+                              unfocusedIconName="home-outline"
+                              {...props}
+                            />
+                          );
                         },
                       }}>
                       {() => {
@@ -70,8 +80,14 @@ export const Router = () => {
                       options={{
                         title: 'Feed',
                         headerShown: false,
-                        tabBarIcon(_props) {
-                          return <></>;
+                        tabBarIcon(props) {
+                          return (
+                            <BottomTabBarIcon
+                              focusedIconName="layers"
+                              unfocusedIconName="layers-outline"
+                              {...props}
+                            />
+                          );
                         },
                       }}>
                       {() => {
@@ -91,8 +107,14 @@ export const Router = () => {
                       options={{
                         title: 'Messages',
                         headerShown: false,
-                        tabBarIcon(_props) {
-                          return <></>;
+                        tabBarIcon(props) {
+                          return (
+                            <BottomTabBarIcon
+                              focusedIconName="chatbubbles"
+                              unfocusedIconName="chatbubbles-outline"
+                              {...props}
+                            />
+                          );
                         },
                       }}>
                       {() => {
@@ -112,8 +134,14 @@ export const Router = () => {
                       options={{
                         title: 'Cart',
                         headerShown: false,
-                        tabBarIcon(_props) {
-                          return <></>;
+                        tabBarIcon(props) {
+                          return (
+                            <BottomTabBarIcon
+                              focusedIconName="cart"
+                              unfocusedIconName="cart-outline"
+                              {...props}
+                            />
+                          );
                         },
                       }}>
                       {() => {
@@ -133,8 +161,14 @@ export const Router = () => {
                       options={{
                         title: 'Profile',
                         headerShown: false,
-                        tabBarIcon(_props) {
-                          return <></>;
+                        tabBarIcon(props) {
+                          return (
+                            <BottomTabBarIcon
+                              focusedIconName="person-circle"
+                              unfocusedIconName="person-circle-outline"
+                              {...props}
+                            />
+                          );
                         },
                       }}>
                       {() => {
