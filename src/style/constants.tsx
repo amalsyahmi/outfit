@@ -33,6 +33,7 @@ export const constants = {
   fontSizeMedium: 16,
   fontSizeLarge: 20,
   fontSizeExtraLarge: 24,
+  fontSizeHeadline: 44,
 
   fontWeightLight: '300' as const,
   fontWeightRegular: '400' as const,

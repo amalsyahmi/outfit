@@ -10,6 +10,7 @@ export interface WithTextProps {
   sizeMedium?: boolean;
   sizeLarge?: boolean;
   sizeExtraLarge?: boolean;
+  sizeHeadline?: boolean;
 
   colorBlack?: boolean;
   colorGray?: boolean;
@@ -50,6 +51,7 @@ export function withTextProps<Props extends {style?: any}>(
         sizeMedium,
         sizeLarge,
         sizeExtraLarge,
+        sizeHeadline,
 
         colorGray,
         colorPrimary,
@@ -96,6 +98,9 @@ export function withTextProps<Props extends {style?: any}>(
       } else if (sizeExtraLarge) {
         style.fontSize = C.fontSizeExtraLarge;
         style.lineHeight = 32;
+      } else if (sizeHeadline) {
+        style.fontSize = C.fontSizeHeadline;
+        style.lineHeight = 44;
       }
 
       style.color = C.colorBlack;
