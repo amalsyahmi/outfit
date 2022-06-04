@@ -36,7 +36,7 @@ export const Router = () => {
           }}>
           <TopLevelStack.Screen name="MainStack" options={{headerShown: false}}>
             {() => {
-              // If !== 'web' show mobile UI
+              //TODO: If !== 'web' show mobile UI
               if (Platform.OS === 'web')
                 return (
                   <MainStackMobile.Navigator
