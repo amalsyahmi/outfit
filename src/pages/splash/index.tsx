@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {View} from '../../components/View';
 import {Text} from '../../components/Text';
 
 export const SplashScreen = () => {
   return (
-    <View style={{width: '100%', height: '100%', backgroundColor: '#DB3022'}}>
-      <Text sizeExtraLarge weightBold colorLight marginAuto>
+    <View fullRedPage>
+      <Text sizeHeadline weightBold colorWhite marginAuto>
         Outfit
       </Text>
     </View>

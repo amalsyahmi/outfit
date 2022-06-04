@@ -1,5 +1,15 @@
+import {NavigatorScreenParams} from '@react-navigation/native';
+
 export type TopLevelStackParams = {
-  WelcomeScreen: undefined;
+  MainStack: NavigatorScreenParams<MainStackParams>;
+};
+
+export type MainStackParams = {
+  HomeScreen: undefined;
+  FeedScreen: undefined;
+  MessagesScreen: undefined;
+  CartScreen: undefined;
+  ProfileScreen: undefined;
 };
 
 // Type navigation globally

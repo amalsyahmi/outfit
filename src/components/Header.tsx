@@ -1,18 +1,12 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {View} from '../components/View';
+import {Text} from '../components/Text';
 export const Header = () => {
   return (
     <SafeAreaView>
-      <View style={{paddingVertical: 20}}>
-        <Text
-          style={{
-            alignSelf: 'center',
-            fontSize: 25,
-            color: '#555',
-            fontWeight: 'bold',
-          }}>
-          React Native Template
-        </Text>
+      <View>
+        <Text>React Native Template</Text>
       </View>
     </SafeAreaView>
   );
