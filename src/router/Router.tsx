@@ -1,4 +1,5 @@
 import React from 'react';
+import {Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -13,8 +14,13 @@ import ProfileScreen from '../pages/ProfileScren';
 
 export const Router = () => {
   const TopLevelStack = createStackNavigator<TopLevelStackParams>();
-  const MainStack = createBottomTabNavigator<MainStackParams>();
+  const MainStackMobile = createBottomTabNavigator<MainStackParams>();
+  const MainStackWeb = createStackNavigator<MainStackParams>();
   const HomeStack = createStackNavigator();
+  const FeedStack = createStackNavigator();
+  const MessagesStack = createStackNavigator();
+  const CartStack = createStackNavigator();
+  const ProfileStack = createStackNavigator();
 
   return (
     <NavigationContainer
@@ -28,121 +34,133 @@ export const Router = () => {
           }}>
           <TopLevelStack.Screen name="MainStack" options={{headerShown: false}}>
             {() => {
-              return (
-                <MainStack.Navigator
-                  screenOptions={{
-                    header(props: any) {
-                      return <Header {...props} />;
-                    },
-                    tabBarHideOnKeyboard: true,
-                  }}>
-                  <MainStack.Screen
-                    name="HomeScreen"
-                    options={{
-                      title: 'Home',
-                      headerShown: false,
-                      tabBarIcon(_props) {
-                        return <></>;
+              // If !== 'web' show mobile UI
+              if (Platform.OS === 'web')
+                return (
+                  <MainStackMobile.Navigator
+                    screenOptions={{
+                      header(props: any) {
+                        return <Header {...props} />;
                       },
+                      tabBarHideOnKeyboard: true,
                     }}>
-                    {() => {
-                      return (
-                        <HomeStack.Navigator initialRouteName="HomeScreen">
-                          <HomeStack.Screen
-                            name="HomeScreen"
-                            component={HomeScreen}
-                            options={{headerShown: false}}
-                          />
-                        </HomeStack.Navigator>
-                      );
-                    }}
-                  </MainStack.Screen>
-                  <MainStack.Screen
-                    name="FeedScreen"
-                    options={{
-                      title: 'Feed',
-                      headerShown: false,
-                      tabBarIcon(_props) {
-                        return <></>;
-                      },
-                    }}>
-                    {() => {
-                      return (
-                        <HomeStack.Navigator initialRouteName="FeedScreen">
-                          <HomeStack.Screen
-                            name="FeedScreen"
-                            component={FeedScreen}
-                            options={{headerShown: false}}
-                          />
-                        </HomeStack.Navigator>
-                      );
-                    }}
-                  </MainStack.Screen>
-                  <MainStack.Screen
-                    name="MessagesScreen"
-                    options={{
-                      title: 'Messages',
-                      headerShown: false,
-                      tabBarIcon(_props) {
-                        return <></>;
-                      },
-                    }}>
-                    {() => {
-                      return (
-                        <HomeStack.Navigator initialRouteName="MessagesScreen">
-                          <HomeStack.Screen
-                            name="MessagesScreen"
-                            component={MessagesScreen}
-                            options={{headerShown: false}}
-                          />
-                        </HomeStack.Navigator>
-                      );
-                    }}
-                  </MainStack.Screen>
-                  <MainStack.Screen
-                    name="CartScreen"
-                    options={{
-                      title: 'Cart',
-                      headerShown: false,
-                      tabBarIcon(_props) {
-                        return <></>;
-                      },
-                    }}>
-                    {() => {
-                      return (
-                        <HomeStack.Navigator initialRouteName="CartScreen">
-                          <HomeStack.Screen
-                            name="CartScreen"
-                            component={CartScreen}
-                            options={{headerShown: false}}
-                          />
-                        </HomeStack.Navigator>
-                      );
-                    }}
-                  </MainStack.Screen>
-                  <MainStack.Screen
-                    name="ProfileScreen"
-                    options={{
-                      title: 'Profile',
-                      headerShown: false,
-                      tabBarIcon(_props) {
-                        return <></>;
-                      },
-                    }}>
-                    {() => {
-                      return (
-                        <HomeStack.Navigator initialRouteName="ProfileScreen">
-                          <HomeStack.Screen
-                            name="ProfileScreen"
-                            component={ProfileScreen}
-                            options={{headerShown: false}}
-                          />
-                        </HomeStack.Navigator>
-                      );
-                    }}
-                  </MainStack.Screen>
-                </MainStack.Navigator>
-              );
+                    <MainStackMobile.Screen
+                      name="HomeScreen"
+                      options={{
+                        title: 'Home',
+                        headerShown: false,
+                        tabBarIcon(_props) {
+                          return <></>;
+                        },
+                      }}>
+                      {() => {
+                        return (
+                          <HomeStack.Navigator initialRouteName="HomeScreen">
+                            <HomeStack.Screen
+                              name="HomeMainScreen"
+                              component={HomeScreen}
+                              options={{headerShown: false}}
+                            />
+                          </HomeStack.Navigator>
+                        );
+                      }}
+                    </MainStackMobile.Screen>
+                    <MainStackMobile.Screen
+                      name="FeedScreen"
+                      options={{
+                        title: 'Feed',
+                        headerShown: false,
+                        tabBarIcon(_props) {
+                          return <></>;
+                        },
+                      }}>
+                      {() => {
+                        return (
+                          <FeedStack.Navigator initialRouteName="FeedScreen">
+                            <FeedStack.Screen
+                              name="FeedMainScreen"
+                              component={FeedScreen}
+                              options={{headerShown: false}}
+                            />
+                          </FeedStack.Navigator>
+                        );
+                      }}
+                    </MainStackMobile.Screen>
+                    <MainStackMobile.Screen
+                      name="MessagesScreen"
+                      options={{
+                        title: 'Messages',
+                        headerShown: false,
+                        tabBarIcon(_props) {
+                          return <></>;
+                        },
+                      }}>
+                      {() => {
+                        return (
+                          <MessagesStack.Navigator initialRouteName="MessagesScreen">
+                            <MessagesStack.Screen
+                              name="MessagesMainScreen"
+                              component={MessagesScreen}
+                              options={{headerShown: false}}
+                            />
+                          </MessagesStack.Navigator>
+                        );
+                      }}
+                    </MainStackMobile.Screen>
+                    <MainStackMobile.Screen
+                      name="CartScreen"
+                      options={{
+                        title: 'Cart',
+                        headerShown: false,
+                        tabBarIcon(_props) {
+                          return <></>;
+                        },
+                      }}>
+                      {() => {
+                        return (
+                          <CartStack.Navigator initialRouteName="CartScreen">
+                            <CartStack.Screen
+                              name="CartMainScreen"
+                              component={CartScreen}
+                              options={{headerShown: false}}
+                            />
+                          </CartStack.Navigator>
+                        );
+                      }}
+                    </MainStackMobile.Screen>
+                    <MainStackMobile.Screen
+                      name="ProfileScreen"
+                      options={{
+                        title: 'Profile',
+                        headerShown: false,
+                        tabBarIcon(_props) {
+                          return <></>;
+                        },
+                      }}>
+                      {() => {
+                        return (
+                          <ProfileStack.Navigator initialRouteName="ProfileScreen">
+                            <ProfileStack.Screen
+                              name="ProfileMainScreen"
+                              component={ProfileScreen}
+                              options={{headerShown: false}}
+                            />
+                          </ProfileStack.Navigator>
+                        );
+                      }}
+                    </MainStackMobile.Screen>
+                  </MainStackMobile.Navigator>
+                );
+              else
+                return (
+                  <MainStackWeb.Navigator initialRouteName="HomeScreen">
+                    <HomeStack.Screen
+                      name="HomeScreen"
+                      component={HomeScreen}
+                      options={{headerShown: false}}
+                    />
+                  </MainStackWeb.Navigator>
+                );
             }}
           </TopLevelStack.Screen>
         </TopLevelStack.Navigator>
