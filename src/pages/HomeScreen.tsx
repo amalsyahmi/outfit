@@ -1,12 +1,14 @@
 import SearchBar from '../components/SearchBar';
-import {Text} from '../components/Text';
+import {Spacer} from '../components/Spacer';
 import {View} from '../components/View';
 
 const HomeScreen = () => {
   return (
     <View>
-      <SearchBar />
-      <Text>Home screen</Text>
+      <View paddingHorizontalLarge>
+        <Spacer extraLarge />
+        <SearchBar />
+      </View>
     </View>
   );
 };

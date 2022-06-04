@@ -12,6 +12,7 @@ const SearchBar = () => {
         setSearchValue(e);
       }}
       value={searchValue}
+      placeholder="Sport Dress"
       leftComponent={() => (
         <Icon name="search" size={24} color={C.colorGray} />
       )}></TextInput>
