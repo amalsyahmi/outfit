@@ -11,17 +11,13 @@ export interface WithTextProps {
   sizeLarge?: boolean;
   sizeExtraLarge?: boolean;
 
-  colorTheme?: boolean;
-  colorNegativeBlue?: boolean;
-  colorNegativeYellow?: boolean;
-  colorAccent?: boolean;
-  colorDark?: boolean;
-  colorDarkSoft?: boolean;
-  colorDarkSofter?: boolean;
-  colorLight?: boolean;
-  colorLightSoft?: boolean;
-  colorLightSofter?: boolean;
-  colorDanger?: boolean;
+  colorBlack?: boolean;
+  colorGray?: boolean;
+  colorPrimary?: boolean;
+  colorWhite?: boolean;
+  colorError?: boolean;
+  colorSuccess?: boolean;
+  colorHot?: boolean;
 
   /** light=300, regular=400, semibold=500, bold=700, extrabold=800 */
   weightLight?: boolean;
@@ -39,10 +35,6 @@ export interface WithTextProps {
   lineThrough?: boolean;
   marginAuto?: boolean;
 
-  // * Comment out due to unused
-  // includeFontPadding?: boolean;
-  // textAlignVertical?: "auto" | "top" | "bottom" | "center";
-
   children?: ReactNode;
 }
 
@@ -59,17 +51,12 @@ export function withTextProps<Props extends {style?: any}>(
         sizeLarge,
         sizeExtraLarge,
 
-        colorTheme,
-        colorNegativeBlue,
-        colorNegativeYellow,
-        colorAccent,
-        colorDark,
-        colorDarkSoft,
-        colorDarkSofter,
-        colorLight,
-        colorLightSoft,
-        colorLightSofter,
-        colorDanger,
+        colorGray,
+        colorPrimary,
+        colorWhite,
+        colorError,
+        colorSuccess,
+        colorHot,
 
         weightLight,
         weightRegular,
@@ -86,9 +73,6 @@ export function withTextProps<Props extends {style?: any}>(
         lineThrough,
         marginAuto,
         style: passThroughStyle,
-        // * Comment out due to unused
-        // includeFontPadding = false,
-        // textAlignVertical = "center",
         ...passThroughProps
       },
       ref,
@@ -114,29 +98,19 @@ export function withTextProps<Props extends {style?: any}>(
         style.lineHeight = 32;
       }
 
-      style.color = C.colorTextDark;
-      if (colorTheme) {
-        style.color = C.colorTextTheme;
-      } else if (colorNegativeBlue) {
-        style.color = C.colorTextNegativeBlue;
-      } else if (colorNegativeYellow) {
-        style.color = C.colorTextNegativeYellow;
-      } else if (colorAccent) {
-        style.color = C.colorTextAccent;
-      } else if (colorDark) {
-        style.color = C.colorTextDark;
-      } else if (colorDarkSoft) {
-        style.color = C.colorTextDarkSoft;
-      } else if (colorDarkSofter) {
-        style.color = C.colorTextDarkSofter;
-      } else if (colorLight) {
-        style.color = C.colorTextLight;
-      } else if (colorLightSoft) {
-        style.color = C.colorTextLightSoft;
-      } else if (colorLightSofter) {
-        style.color = C.colorTextLightSofter;
-      } else if (colorDanger) {
-        style.color = C.colorTextDanger;
+      style.color = C.colorBlack;
+      if (colorGray) {
+        style.color = C.colorGray;
+      } else if (colorPrimary) {
+        style.color = C.colorPrimary;
+      } else if (colorWhite) {
+        style.color = C.colorWhite;
+      } else if (colorError) {
+        style.color = C.colorError;
+      } else if (colorSuccess) {
+        style.color = C.colorSuccess;
+      } else if (colorHot) {
+        style.color = C.colorHot;
       }
 
       style.fontWeight = C.fontWeightRegular;
