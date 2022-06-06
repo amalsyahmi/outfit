@@ -123,34 +123,68 @@ export function withLayoutProps<Props extends {style?: any}>(
       ref,
     ) => {
       const style: ViewStyle = {};
-      if (paddingSmall) style.padding = C.spacingSmall;
-      if (paddingMedium) style.padding = C.spacingMedium;
-      if (paddingLarge) style.padding = C.spacingLarge;
-      if (paddingExtraLarge) style.padding = C.spacingExtraLarge;
+      if (paddingSmall) {
+        style.padding = C.spacingSmall;
+      }
+      if (paddingMedium) {
+        style.padding = C.spacingMedium;
+      }
+      if (paddingLarge) {
+        style.padding = C.spacingLarge;
+      }
+      if (paddingExtraLarge) {
+        style.padding = C.spacingExtraLarge;
+      }
 
-      if (paddingHorizontalSmall) style.paddingHorizontal = C.spacingSmall;
-      if (paddingHorizontalMedium) style.paddingHorizontal = C.spacingMedium;
-      if (paddingHorizontalLarge) style.paddingHorizontal = C.spacingLarge;
-      if (paddingHorizontalExtraLarge)
+      if (paddingHorizontalSmall) {
+        style.paddingHorizontal = C.spacingSmall;
+      }
+      if (paddingHorizontalMedium) {
+        style.paddingHorizontal = C.spacingMedium;
+      }
+      if (paddingHorizontalLarge) {
+        style.paddingHorizontal = C.spacingLarge;
+      }
+      if (paddingHorizontalExtraLarge) {
         style.paddingHorizontal = C.spacingExtraLarge;
+      }
 
-      if (paddingVerticalSmall) style.paddingVertical = C.spacingSmall;
-      if (paddingVerticalMedium) style.paddingVertical = C.spacingMedium;
-      if (paddingVerticalLarge) style.paddingVertical = C.spacingLarge;
-      if (paddingVerticalExtraLarge)
+      if (paddingVerticalSmall) {
+        style.paddingVertical = C.spacingSmall;
+      }
+      if (paddingVerticalMedium) {
+        style.paddingVertical = C.spacingMedium;
+      }
+      if (paddingVerticalLarge) {
+        style.paddingVertical = C.spacingLarge;
+      }
+      if (paddingVerticalExtraLarge) {
         style.paddingVertical = C.spacingExtraLarge;
+      }
 
       if (centerContent) {
         style.justifyContent = 'center';
         style.alignItems = 'center';
       }
-      if (justifyContentCenter) style.justifyContent = 'center';
-      if (alignItemsCenter) style.alignItems = 'center';
+      if (justifyContentCenter) {
+        style.justifyContent = 'center';
+      }
+      if (alignItemsCenter) {
+        style.alignItems = 'center';
+      }
 
-      if (flexDirectionRow) style.flexDirection = 'row';
-      if (flexDirectionColumn) style.flexDirection = 'column';
-      if (flexDirectionRowReverse) style.flexDirection = 'row-reverse';
-      if (flexDirectionColumnReverse) style.flexDirection = 'column-reverse';
+      if (flexDirectionRow) {
+        style.flexDirection = 'row';
+      }
+      if (flexDirectionColumn) {
+        style.flexDirection = 'column';
+      }
+      if (flexDirectionRowReverse) {
+        style.flexDirection = 'row-reverse';
+      }
+      if (flexDirectionColumnReverse) {
+        style.flexDirection = 'column-reverse';
+      }
 
       if (absoluteTopLeft) {
         style.position = 'absolute';
@@ -253,7 +287,9 @@ export function withLayoutProps<Props extends {style?: any}>(
         style.right = C.spacingExtraLarge;
       }
 
-      if (flex) style.flex = 1;
+      if (flex) {
+        style.flex = 1;
+      }
 
       if (aspectRatioOne) {
         style.aspectRatio = 1;

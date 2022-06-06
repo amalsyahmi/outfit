@@ -36,11 +36,17 @@ const Spacer = ({
   extraLarge,
 }: SpacerProps) => {
   let style = S.spacingMedium;
-  if (extraSmall) style = S.spacingExtraSmall;
-  else if (small) style = S.spacingSmall;
-  else if (medium) style = S.spacingMedium;
-  else if (large) style = S.spacingLarge;
-  else if (extraLarge) style = S.spacingExtraLarge;
+  if (extraSmall) {
+    style = S.spacingExtraSmall;
+  } else if (small) {
+    style = S.spacingSmall;
+  } else if (medium) {
+    style = S.spacingMedium;
+  } else if (large) {
+    style = S.spacingLarge;
+  } else if (extraLarge) {
+    style = S.spacingExtraLarge;
+  }
 
   return <View style={style} />;
 };

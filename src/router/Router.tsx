@@ -37,7 +37,7 @@ export const Router = () => {
           <TopLevelStack.Screen name="MainStack" options={{headerShown: false}}>
             {() => {
               //TODO: If !== 'web' show mobile UI
-              if (Platform.OS === 'web')
+              if (Platform.OS === 'web') {
                 return (
                   <MainStackMobile.Navigator
                     screenOptions={{
@@ -185,7 +185,7 @@ export const Router = () => {
                     </MainStackMobile.Screen>
                   </MainStackMobile.Navigator>
                 );
-              else
+              } else {
                 return (
                   <MainStackWeb.Navigator initialRouteName="HomeScreen">
                     <HomeStack.Screen
@@ -195,6 +195,7 @@ export const Router = () => {
                     />
                   </MainStackWeb.Navigator>
                 );
+              }
             }}
           </TopLevelStack.Screen>
         </TopLevelStack.Navigator>

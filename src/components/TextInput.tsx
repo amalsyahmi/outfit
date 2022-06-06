@@ -4,7 +4,7 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
   TextStyle,
-  ViewStyle,
+  // ViewStyle,
 } from 'react-native';
 
 import {constants as C} from '../style/constants';
@@ -14,13 +14,13 @@ import {View} from './View';
 const S = StyleSheet.create({
   textInput: {
     flex: 1,
-    minHeight: 52,
-    paddingHorizontal: C.spacingMedium,
+    minHeight: 45,
+    paddingHorizontal: C.spacingLarge,
   },
   spacer: {height: 8},
   container: {
     flexDirection: 'row',
-    borderRadius: 16,
+    borderRadius: 10,
     borderWidth: 1,
     paddingHorizontal: C.spacingLarge,
   },
@@ -50,9 +50,9 @@ export interface TextInputProps extends RNTextInputProps {
   label?: string;
   error?: boolean;
   caption?: string;
-  containerStyle?: ViewStyle;
-  leftComponent?: () => ReactNode;
-  rightComponent?: () => ReactNode;
+  // containerStyle?: ViewStyle;
+  // leftComponent?: () => ReactNode;
+  // rightComponent?: () => ReactNode;
 
   children?: ReactNode;
 }
@@ -84,10 +84,10 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
       label,
       error = false,
       caption = ' ',
-      containerStyle,
+      // containerStyle,
 
-      leftComponent,
-      rightComponent,
+      // leftComponent,
+      // rightComponent,
 
       ...props
     },
@@ -96,19 +96,32 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
     const [isFocused, setIsFocused] = useState(false);
 
     let fontSize: TextStyle['fontSize'] = C.fontSizeMedium;
-    if (sizeExtraSmall) fontSize = C.fontSizeExtraSmall;
-    else if (sizeSmall) fontSize = C.fontSizeSmall;
-    else if (sizeMedium) fontSize = C.fontSizeMedium;
-    else if (sizeLarge) fontSize = C.fontSizeLarge;
-    else if (sizeExtraLarge) fontSize = C.fontSizeExtraLarge;
+    if (sizeExtraSmall) {
+      fontSize = C.fontSizeExtraSmall;
+    } else if (sizeSmall) {
+      fontSize = C.fontSizeSmall;
+    } else if (sizeMedium) {
+      fontSize = C.fontSizeMedium;
+    } else if (sizeLarge) {
+      fontSize = C.fontSizeLarge;
+    } else if (sizeExtraLarge) {
+      fontSize = C.fontSizeExtraLarge;
+    }
 
     let color: TextStyle['color'] = C.colorBlack;
-    if (colorGray) color = C.colorGray;
-    else if (colorPrimary) color = C.colorPrimary;
-    else if (colorWhite) color = C.colorWhite;
-    else if (colorError) color = C.colorError;
-    else if (colorSuccess) color = C.colorSuccess;
-    else if (colorHot) color = C.colorHot;
+    if (colorGray) {
+      color = C.colorGray;
+    } else if (colorPrimary) {
+      color = C.colorPrimary;
+    } else if (colorWhite) {
+      color = C.colorWhite;
+    } else if (colorError) {
+      color = C.colorError;
+    } else if (colorSuccess) {
+      color = C.colorSuccess;
+    } else if (colorHot) {
+      color = C.colorHot;
+    }
 
     let fontWeight: TextStyle['fontWeight'] = C.fontWeightRegular;
     const fontFamily: TextStyle['fontFamily'] = undefined; // "OpenSans-Regular";
@@ -131,7 +144,7 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
 
     const editable = props.editable ?? true;
 
-    let borderColor: TextStyle['borderColor'] = 'rgba(232, 232, 232, 1)';
+    let borderColor: TextStyle['borderColor'] = C.colorGray;
     if (error) {
       borderColor = C.colorError;
     } else if (isFocused) {
@@ -152,34 +165,39 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
             <View style={S.spacer} />
           </>
         )}
-        <View
+        {/* <View
           centerContent
           style={[S.container, {backgroundColor, borderColor}, containerStyle]}>
-          {leftComponent ? leftComponent() : null}
-          <RNTextInput
-            ref={ref}
-            placeholderTextColor={C.colorGray}
-            selectionColor={C.colorPrimary}
-            onFocus={() => {
-              setIsFocused(true);
-            }}
-            onEndEditing={() => {
-              setIsFocused(false);
-            }}
-            style={[
-              S.textInput,
-              {
-                fontSize,
-                color,
-                fontWeight,
-                fontFamily,
-              },
-              style,
-            ]}
-            {...props}
-          />
-          {rightComponent ? rightComponent() : null}
-        </View>
+          {leftComponent ? leftComponent() : null} */}
+        <RNTextInput
+          ref={ref}
+          placeholderTextColor={C.colorGray}
+          selectionColor={C.colorPrimary}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onEndEditing={() => {
+            setIsFocused(false);
+          }}
+          style={[
+            S.textInput,
+            {
+              fontSize,
+              color,
+              fontWeight,
+              fontFamily,
+              borderWidth: 1, // added
+              borderColor, //added
+              borderRadius: 10,
+              backgroundColor, // added
+            },
+            style,
+          ]}
+          underlineColorAndroid="transparent"
+          {...props}
+        />
+        {/* {rightComponent ? rightComponent() : null}
+        </View> */}
         <View style={S.spacer} />
         <Text sizeSmall colorError={error} weightBold>
           {caption}
