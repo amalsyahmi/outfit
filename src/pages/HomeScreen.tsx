@@ -7,8 +7,31 @@ import {Text} from '../components/Text';
 import {TextInput} from '../components/TextInput';
 import {View} from '../components/View';
 import {constants as C} from '../style/constants';
+import {gql, useQuery} from '@apollo/client';
+
+const GET_ALL_ITEMS_QUERY = gql`
+  query GetAllItems {
+    items {
+      id
+      name
+      brand
+      ratingAverage
+      ratingCount
+      discount
+      images(first: 1) {
+        id
+        url
+      }
+      stocks(first: 1, orderBy: pricing_ASC) {
+        pricing
+      }
+    }
+  }
+`;
 
 const HomeScreen = () => {
+  const {data, loading} = useQuery(GET_ALL_ITEMS_QUERY);
+
   return (
     <Screen showsVerticalScrollIndicator={false}>
       {/* Header */}
@@ -51,12 +74,23 @@ const HomeScreen = () => {
           <Text sizeSmall colorGray>
             Super summer sales
           </Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <ItemCardHome />
-            <ItemCardHome />
-            <ItemCardHome />
-            <ItemCardHome />
-            <ItemCardHome />
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{paddingVertical: 10, paddingHorizontal: 5}}>
+            {!loading &&
+              data.items.map((item: any, index: any) => (
+                <ItemCardHome item={item} key={index} />
+              ))}
+            {loading && (
+              <>
+                <ItemCardHome />
+                <ItemCardHome />
+                <ItemCardHome />
+                <ItemCardHome />
+                <ItemCardHome />
+              </>
+            )}
           </ScrollView>
         </View>
         <View>
@@ -67,7 +101,10 @@ const HomeScreen = () => {
           <Text sizeSmall colorGray>
             You've never seen it before!
           </Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{paddingVertical: 10, paddingHorizontal: 5}}>
             <ItemCardHome />
             <ItemCardHome />
             <ItemCardHome />

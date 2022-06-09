@@ -92,12 +92,16 @@ export const Screen = React.forwardRef<ScrollView | View, ScreenProps>(
     };
 
     const resolvePaddingBottom = () => {
-      if (props.withoutBottomTabBar) return insetBottom;
+      if (props.withoutBottomTabBar) {
+        return insetBottom;
+      }
       return undefined;
     };
 
     const resolvePaddingTop = () => {
-      if (props.withoutHeader) return insetTop;
+      if (props.withoutHeader) {
+        return insetTop;
+      }
       return undefined;
     };
 

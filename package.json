@@ -22,7 +22,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@react-native-masked-view/masked-view": "^0.2.6",
+    "@apollo/client": "^3.6.6",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/material-top-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.10",
@@ -31,9 +31,11 @@
     "@types/lodash": "^4.14.182",
     "babel-plugin-react-native-web": "^0.17.7",
     "color": "^4.2.3",
+    "graphql": "^16.5.0",
     "lodash": "^4.17.21",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-loading-skeleton": "^3.1.0",
     "react-native": "^0.68.2",
     "react-native-gesture-handler": "2.3.2",
     "react-native-pager-view": "^5.4.24",
