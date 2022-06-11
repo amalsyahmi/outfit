@@ -7,6 +7,8 @@ import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {SplashScreen} from './pages/splash';
 import {Router} from './router/Router';
 import './App.css';
+import {ModalProvider} from './components/ModalProvider';
+import {AlertProvider} from './components/AlertProvider';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
@@ -29,7 +31,11 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <Router />
+        <ModalProvider>
+          <AlertProvider>
+            <Router />
+          </AlertProvider>
+        </ModalProvider>
       </SafeAreaProvider>
     </ApolloProvider>
   );

@@ -4,7 +4,6 @@ import {TextStyle} from 'react-native';
 import {constants as C} from '../style/constants';
 
 export interface WithTextProps {
-  /** extraSmall=8, small=10, medium=16, large=20, extraLarge=24 */
   sizeExtraSmall?: boolean;
   sizeSmall?: boolean;
   sizeMedium?: boolean;
@@ -20,7 +19,6 @@ export interface WithTextProps {
   colorSuccess?: boolean;
   colorHot?: boolean;
 
-  /** light=300, regular=400, semibold=500, bold=700, extrabold=800 */
   weightLight?: boolean;
   weightRegular?: boolean;
   weightSemiBold?: boolean;

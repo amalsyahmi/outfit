@@ -22,7 +22,7 @@ const ModalContext = React.createContext<{
   updateContent(params: Content): void;
 } | null>(null);
 
-export const ModalProvider = ({childrenMain}: {childrenMain: ReactNode}) => {
+export const ModalProvider = ({children}: {children: ReactNode}) => {
   const [contentList, setContentList] = React.useState<Content[]>([]);
 
   // Create a value to pass to modal
@@ -47,7 +47,7 @@ export const ModalProvider = ({childrenMain}: {childrenMain: ReactNode}) => {
 
   return (
     <ModalContext.Provider value={actions.current}>
-      {childrenMain}
+      {children}
       {contentList.length > 0 && (
         <KeyboardAvoidingView
           enabled={Platform.select({android: false, default: true})}

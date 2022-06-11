@@ -3,6 +3,7 @@ const window = Dimensions.get('window');
 
 const colorBlack = '#222222';
 const colorGray = '#9B9B9B';
+const colorDarkGray = '#F1F1F1';
 const colorPrimary = '#DB3022';
 const colorBackground = '#F9F9F9';
 const colorWhite = '#FFFFFF';
@@ -15,6 +16,7 @@ export const constants = {
   windowHeight: window.height,
   colorBlack,
   colorGray,
+  colorDarkGray,
   colorPrimary,
   colorBackground,
   colorWhite,

@@ -98,7 +98,7 @@ const ItemCardSearch = ({item}: any) => {
               <Text sizeSmall colorGray>
                 ({item?.ratingCount ? item?.ratingCount : 0})
               </Text>
-              <View></View>
+              <View />
             </View>
             <View flexDirectionRow>
               {item?.stocks[0].pricing ? (
