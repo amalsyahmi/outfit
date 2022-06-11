@@ -1,16 +1,15 @@
-import {Image} from 'react-native';
-import {TouchableOpacity} from './TouchableOpacity';
-import {constants as C} from '../style/constants';
 import {View} from './View';
+import {Image} from 'react-native';
+import Skeleton from 'react-loading-skeleton';
+import {constants as C} from '../style/constants';
+import {TouchableOpacity} from './TouchableOpacity';
+import {Text} from '../components/Text';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Spacer} from './Spacer';
-import {Text} from './Text';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
-const ItemCardHome = ({item}: any) => {
+const ItemCardSearch = ({item}: any) => {
   return (
-    <View style={{paddingRight: C.spacingLarge}}>
+    <View style={{paddingBottom: C.spacingLarge}}>
       <TouchableOpacity
         style={{
           shadowOffset: {width: 1, height: 1},
@@ -19,23 +18,27 @@ const ItemCardHome = ({item}: any) => {
           shadowColor: C.colorBlack,
           borderRadius: 10,
         }}>
-        <View>
+        <View flex flexDirectionRow>
           {item?.images[0] ? (
             <Image
               key={item?.images[0].id}
               source={item?.images[0].url}
               style={{
-                width: 148,
-                height: 184,
+                width: 89,
+                height: 111,
                 borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
+                borderBottomLeftRadius: 10,
               }}
             />
           ) : (
-            <Skeleton width={148} height={184} duration={1} />
+            <Skeleton width={89} height={111} duration={1} />
           )}
-          <View paddingMedium>
-            <View flex flexDirectionRow>
+          <View paddingHorizontalMedium>
+            <Text weightSemiBold>{item?.name}</Text>
+            <Text sizeSmall colorGray>
+              {item?.brand}
+            </Text>
+            <View flexDirectionRow>
               <Icon
                 name={
                   item?.ratingAverage >= 1
@@ -95,13 +98,9 @@ const ItemCardHome = ({item}: any) => {
               <Text sizeSmall colorGray>
                 ({item?.ratingCount ? item?.ratingCount : 0})
               </Text>
+              <View></View>
             </View>
-            <Spacer />
-            <Text sizeExtraSmall colorGray>
-              {item?.brand}
-            </Text>
-            <Text weightSemiBold>{item?.name}</Text>
-            <View flex flexDirectionRow>
+            <View flexDirectionRow>
               {item?.stocks[0].pricing ? (
                 item?.discount || item?.discount === 0 ? (
                   <>
@@ -135,4 +134,4 @@ const ItemCardHome = ({item}: any) => {
   );
 };
 
-export default ItemCardHome;
+export default ItemCardSearch;

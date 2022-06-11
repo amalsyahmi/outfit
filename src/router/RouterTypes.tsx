@@ -5,11 +5,21 @@ export type TopLevelStackParams = {
 };
 
 export type MainStackParams = {
-  HomeScreen: undefined;
+  HomeScreen: NavigatorScreenParams<HomeStackParams>;
   FeedScreen: undefined;
   MessagesScreen: undefined;
   CartScreen: undefined;
   ProfileScreen: undefined;
+};
+
+export type HomeStackParams = {
+  HomeMainScreen: undefined;
+  HomeSearchScreen: {
+    orderBy: string;
+    first: number;
+    skip: number;
+    searchText: string;
+  };
 };
 
 // Type navigation globally

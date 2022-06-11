@@ -4,7 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {MainStackParams, TopLevelStackParams} from './RouterTypes';
+import {
+  HomeStackParams,
+  MainStackParams,
+  TopLevelStackParams,
+} from './RouterTypes';
 import {Header} from '../components/Header';
 import HomeScreen from '../pages/HomeScreen';
 import FeedScreen from '../pages/FeedScreen';
@@ -13,12 +17,13 @@ import CartScreen from '../pages/CartScreen';
 import ProfileScreen from '../pages/ProfileScren';
 import BottomTabBarIcon from '../components/BottomTabBarIcon';
 import {constants as C} from '../style/constants';
+import SearchScreen from '../pages/SearchScreen';
 
 export const Router = () => {
   const TopLevelStack = createStackNavigator<TopLevelStackParams>();
   const MainStackMobile = createBottomTabNavigator<MainStackParams>();
   const MainStackWeb = createStackNavigator<MainStackParams>();
-  const HomeStack = createStackNavigator();
+  const HomeStack = createStackNavigator<HomeStackParams>();
   const FeedStack = createStackNavigator();
   const MessagesStack = createStackNavigator();
   const CartStack = createStackNavigator();
@@ -65,11 +70,18 @@ export const Router = () => {
                       }}>
                       {() => {
                         return (
-                          <HomeStack.Navigator initialRouteName="HomeScreen">
+                          <HomeStack.Navigator initialRouteName="HomeMainScreen">
                             <HomeStack.Screen
                               name="HomeMainScreen"
                               component={HomeScreen}
                               options={{headerShown: false}}
+                            />
+                            <HomeStack.Screen
+                              name="HomeSearchScreen"
+                              component={SearchScreen}
+                              options={{
+                                title: 'Search',
+                              }}
                             />
                           </HomeStack.Navigator>
                         );
@@ -189,7 +201,7 @@ export const Router = () => {
                 return (
                   <MainStackWeb.Navigator initialRouteName="HomeScreen">
                     <HomeStack.Screen
-                      name="HomeScreen"
+                      name="HomeMainScreen"
                       component={HomeScreen}
                       options={{headerShown: false}}
                     />

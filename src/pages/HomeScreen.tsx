@@ -8,10 +8,32 @@ import {TextInput} from '../components/TextInput';
 import {View} from '../components/View';
 import {constants as C} from '../style/constants';
 import {gql, useQuery} from '@apollo/client';
+import {useState} from 'react';
+import {useNavigation} from '@react-navigation/core';
 
-const GET_ALL_ITEMS_QUERY = gql`
-  query GetAllItems {
-    items {
+const GET_ALL_SALES_ITEMS_QUERY = gql`
+  query GetAllSalesItems {
+    items(where: {discount_gt: 0}) {
+      id
+      name
+      brand
+      ratingAverage
+      ratingCount
+      discount
+      images(first: 1) {
+        id
+        url
+      }
+      stocks(first: 1, orderBy: pricing_ASC) {
+        pricing
+      }
+    }
+  }
+`;
+
+const GET_ALL_HOT_ITEMS_QUERY = gql`
+  query GetAllHotItems {
+    items(orderBy: publishedAt_DESC, first: 10) {
       id
       name
       brand
@@ -30,7 +52,32 @@ const GET_ALL_ITEMS_QUERY = gql`
 `;
 
 const HomeScreen = () => {
-  const {data, loading} = useQuery(GET_ALL_ITEMS_QUERY);
+  const {data: salesItems, loading: salesItemsLoading} = useQuery(
+    GET_ALL_SALES_ITEMS_QUERY,
+  );
+  const {data: hotItems, loading: hotItemsLoading} = useQuery(
+    GET_ALL_HOT_ITEMS_QUERY,
+  );
+  const [searchText, setSearchText] = useState<string>('');
+  const [orderBy] = useState<string>('ratingAverage_DESC');
+  const [first] = useState<number>(10);
+  const [skip] = useState<number>(0);
+  const navigation = useNavigation();
+
+  const searchOutfit = () => {
+    navigation.navigate('MainStack', {
+      screen: 'HomeScreen',
+      params: {
+        screen: 'HomeSearchScreen',
+        params: {
+          orderBy: orderBy,
+          first,
+          skip,
+          searchText,
+        },
+      },
+    });
+  };
 
   return (
     <Screen showsVerticalScrollIndicator={false}>
@@ -55,10 +102,17 @@ const HomeScreen = () => {
           <Spacer />
           <View flex flexDirectionRow style={{width: '100%'}}>
             <View style={{flex: 0.7}}>
-              <TextInput placeholder="Casual Dress" />
+              <TextInput
+                placeholder="Casual Dress"
+                onChangeText={text => setSearchText(text)}
+                value={searchText}
+                onKeyPress={(key: any) => {
+                  key.code === 'Enter' && searchOutfit();
+                }}
+              />
             </View>
             <View paddingHorizontalMedium style={{flex: 0.3}}>
-              <Button title="Search" />
+              <Button title="Search" onPress={searchOutfit} />
             </View>
           </View>
         </View>
@@ -78,11 +132,11 @@ const HomeScreen = () => {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={{paddingVertical: 10, paddingHorizontal: 5}}>
-            {!loading &&
-              data.items.map((item: any, index: any) => (
+            {!salesItemsLoading &&
+              salesItems.items.map((item: any, index: any) => (
                 <ItemCardHome item={item} key={index} />
               ))}
-            {loading && (
+            {salesItemsLoading && (
               <>
                 <ItemCardHome />
                 <ItemCardHome />
@@ -105,11 +159,19 @@ const HomeScreen = () => {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={{paddingVertical: 10, paddingHorizontal: 5}}>
-            <ItemCardHome />
-            <ItemCardHome />
-            <ItemCardHome />
-            <ItemCardHome />
-            <ItemCardHome />
+            {!hotItemsLoading &&
+              hotItems.items.map((item: any, index: any) => (
+                <ItemCardHome item={item} key={index} />
+              ))}
+            {hotItemsLoading && (
+              <>
+                <ItemCardHome />
+                <ItemCardHome />
+                <ItemCardHome />
+                <ItemCardHome />
+                <ItemCardHome />
+              </>
+            )}
           </ScrollView>
         </View>
       </View>
