@@ -1,23 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../users/entities/user.entity';
+import { Prisma, User } from '@prisma/client';
 import { UsersService } from '../users/users.service';
-import { LoginUserInput } from './dto/login-user.input';
+import { PrismaService } from '../prisma.service';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
 
-    constructor(private userService: UsersService, private jwtService: JwtService) { }
+    constructor(private userService: UsersService, private jwtService: JwtService, private prisma: PrismaService) { }
 
     async validateUser(username: string, password: string): Promise<any> {
-        const user = await this.userService.findOne(username);
+        const user = await this.userService.findOne({ username });
 
-        const valid = await bcrypt.compare(password, user.password);
 
-        if (user && valid) {
-            const { password, ...result } = user;
-            return result;
+        if (user) {
+            const valid = await bcrypt.compare(password, user.password);
+
+            if (valid) {
+                const { password, ...result } = user;
+                return result;
+            }
         }
 
         return null;
@@ -25,15 +28,15 @@ export class AuthService {
 
     async login(user: User) {
         return {
-            access_token: this.jwtService.sign({username: user.username, sub: user.id}),
+            access_token: this.jwtService.sign({ username: user.username, sub: user.id }),
             user,
         };
     }
 
-    async signup(loginUserInput: LoginUserInput) {
-        const user = await this.userService.findOne(loginUserInput.username);
+    async signup(loginUserInput: Prisma.UserCreateInput) {
+        const user = await this.userService.findOne({ username: loginUserInput.username });
 
-        if(user) {
+        if (user) {
             throw new Error('User already exists!');
         }
 
@@ -41,7 +44,7 @@ export class AuthService {
 
         return this.userService.create({
             ...loginUserInput,
-            password: hashedPassword 
+            password: hashedPassword
         });
     }
 }
