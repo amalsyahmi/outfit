@@ -3,17 +3,37 @@ import { CreateUserInput } from './dto/create-user.input';
 
 @Injectable()
 export class UsersService {
+
+  // Mock data
+  private readonly users = [
+    {
+      id: 1,
+      username: 'amal',
+      password: 'password123'
+    },
+    {
+      id: 2,
+      username: 'zira',
+      password: 'password123'
+    },
+  ];
   
   create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
+    const user = {
+      ...createUserInput,
+      id: this.users.length + 1,
+    };
+
+    this.users.push(user);
+    return user;
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.users;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(username: string) {
+    return this.users.find((user) => user.username === username);
   }
 
 }

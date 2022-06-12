@@ -7,6 +7,5 @@ export class User {
 
   @Field({ description: 'Username' })
   username: string;
-
   
 }
